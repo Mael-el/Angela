@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bonjour mon Amour — EHOU Angela Ella Benelvy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        rose: {
+                            warm: '#D4A0A0',
+                            deep: '#8B4049',
+                            glow: '#C4756E',
+                            soft: '#F2D7D5',
+                            blush: '#F9E8E6',
+                        },
+                        morning: {
+                            gold: '#E8C580',
+                            amber: '#D4956A',
+                            peach: '#F0C4A8',
+                            dawn: '#2A1F1F',
+                            night: '#1A1215',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1A1215; }
+        ::-webkit-scrollbar-thumb { background: #8B4049; border-radius: 3px; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(3deg); }
+        }
+        @keyframes floatReverse {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(-2deg); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            0%, 100% { border-color: #D4A0A0; }
+            50% { border-color: transparent; }
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            14% { transform: scale(1.15); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.1); }
+            56% { transform: scale(1); }
+        }
+        @keyframes sunrise {
+            0% { transform: translateY(100%) scale(0.5); opacity: 0; }
+            60% { opacity: 1; }
+            100% { transform: translateY(0%) scale(1); opacity: 1; }
+        }
+        @keyframes rayRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        @keyframes petalFall {
+            0% { transform: translateY(-10%) rotate(0deg) translateX(0); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(110vh) rotate(720deg) translateX(100px); opacity: 0; }
+        }
+
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-reverse { animation: floatReverse 7s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+        .animate-heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
+        .animate-sunrise { animation: sunrise 3s ease-out forwards; }
+        .animate-ray { animation: rayRotate 20s linear infinite; }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .is-visible {
+            opacity: 1 !important;
+            transform: translateY(0) translateX(0) !important;
+        }
+
+        .letter-card {
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .letter-card:hover {
+            transform: translateY(-8px) scale(1.03);
+        }
+        .letter-card:hover .letter-char {
+            text-shadow: 0 0 40px rgba(212, 160, 160, 0.6), 0 0 80px rgba(139, 64, 73, 0.3);
+        }
+        .letter-card:hover .letter-line {
+            width: 60px;
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, #D4A0A0 0%, #E8C580 25%, #F2D7D5 50%, #E8C580 75%, #D4A0A0 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+
+        .petal {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(ellipse, #F2D7D5, #D4A0A0);
+            border-radius: 50% 0 50% 0;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        .name-section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #8B4049, transparent);
+        }
+
+        .glass-card {
+            background: rgba(42, 31, 31, 0.5);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 160, 160, 0.1);
+        }
+
+        .morning-gradient {
+            background: linear-gradient(180deg, 
+                #1A1215 0%, 
+                #2A1F1F 30%, 
+                #3D2530 60%, 
+                #4A2D35 80%, 
+                #2A1F1F 100%);
+        }
+
+        .sun-glow {
+            background: radial-gradient(circle, rgba(232, 197, 128, 0.15) 0%, transparent 70%);
+        }
+
+        body {
+            background: #1A1215;
+            color: #F2D7D5;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden">
+
+    <!-- Pétales tombantes -->
+    <div id="petals-container"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 h-16 flex items-center justify-between px-6 md:px-12" 
+         style="background: rgba(26, 18, 21, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(139, 64, 73, 0.15);">
+        <a href="#" class="font-serif text-lg text-rose-warm tracking-wide">💌 Pour Elle</a>
+        <div class="hidden md:flex items-center gap-8">
+            <a href="#ehou" class="text-sm text-rose-warm/60 hover:text-rose-warm transition-colors duration-300">EHOU</a>
+            <a href="#angela" class="text-sm text-rose-warm/60 hover:text-rose-warm transition-colors duration-300">ANGELA</a>
+            <a href="#ella" class="text-sm text-rose-warm/60 hover:text-rose-warm transition-colors duration-300">ELLA</a>
+            <a href="#benelvy" class="text-sm text-rose-warm/60 hover:text-rose-warm transition-colors duration-300">BENELVY</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden text-rose-warm">
+            <span class="iconify" data-icon="lucide:menu" data-width="24"></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 hidden" style="background: rgba(26, 18, 21, 0.95); backdrop-filter: blur(16px);">
+        <div class="flex flex-col items-center justify-center h-full gap-8">
+            <a href="#ehou" class="text-2xl font-serif text-rose-warm mobile-link">EHOU</a>
+            <a href="#angela" class="text-2xl font-serif text-rose-warm mobile-link">ANGELA</a>
+            <a href="#ella" class="text-2xl font-serif text-rose-warm mobile-link">ELLA</a>
+            <a href="#benelvy" class="text-2xl font-serif text-rose-warm mobile-link">BENELVY</a>
+            <button id="mobile-menu-close" class="mt-8 text-rose-warm/60 hover:text-rose-warm transition-colors">
+                <span class="iconify" data-icon="lucide:x" data-width="32"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex items-center justify-center morning-gradient overflow-hidden">
+        <!-- Soleil d'aube -->
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 w-64 h-64 md:w-96 md:h-96 rounded-full animate-sunrise"
+             style="background: radial-gradient(circle, rgba(232,197,128,0.4) 0%, rgba(212,149,106,0.2) 40%, transparent 70%);">
+        </div>
+        <!-- Rayons -->
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 w-[600px] h-[600px] animate-ray" style="opacity: 0.15;">
+            <div class="absolute inset-0" style="background: conic-gradient(from 0deg, transparent 0%, rgba(232,197,128,0.3) 5%, transparent 10%, transparent 20%, rgba(232,197,128,0.2) 25%, transparent 30%);"></div>
+        </div>
+        <!-- Particules lumineuses -->
+        <div class="absolute top-1/4 left-1/4 w-2 h-2 rounded-full bg-morning-gold/30 animate-float"></div>
+        <div class="absolute top-1/3 right-1/3 w-1.5 h-1.5 rounded-full bg-rose-warm/20 animate-float-reverse"></div>
+        <div class="absolute bottom-1/3 left-1/3 w-1 h-1 rounded-full bg-morning-peach/30 animate-float" style="animation-delay: -2s;"></div>
+        <div class="absolute top-1/2 right-1/4 w-2.5 h-2.5 rounded-full bg-rose-warm/15 animate-float-reverse" style="animation-delay: -4s;"></div>
+
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <!-- Icône cœur -->
+            <div class="mb-8 animate-heartbeat inline-block">
+                <span class="iconify text-rose-deep" data-icon="lucide:heart" data-width="40" style="color: #8B4049;"></span>
+            </div>
+
+            <!-- Message du matin -->
+            <p class="text-sm uppercase tracking-[0.3em] text-rose-warm/50 mb-6 fade-in-up" style="transition-delay: 0.2s;">
+                Un matin de plus pour te dire
+            </p>
+
+            <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl font-400 tracking-tight leading-tight mb-6 fade-in-up" style="transition-delay: 0.4s;">
+                Bonjour, mon
+                <span class="shimmer-text"> Amour</span>
+            </h1>
+
+            <div class="w-16 h-px mx-auto my-8 fade-in-up" style="background: linear-gradient(90deg, transparent, #8B4049, transparent); transition-delay: 0.6s;"></div>
+
+            <p class="font-serif text-xl md:text-2xl text-rose-warm/70 italic leading-relaxed max-w-2xl mx-auto mb-4 fade-in-up" style="transition-delay: 0.8s;">
+                « Chaque lettre de ton nom est une raison<br class="hidden md:block"> de t'aimer un peu plus »
+            </p>
+
+            <p class="text-sm text-rose-warm/40 mt-6 fade-in-up" style="transition-delay: 1s;">
+                EHOU Angela Ella Benelvy
+            </p>
+
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 fade-in-up" style="transition-delay: 1.4s;">
+                <a href="#ehou" class="flex flex-col items-center gap-2 text-rose-warm/30 hover:text-rose-warm/60 transition-colors duration-300">
+                    <span class="text-xs uppercase tracking-widest">Découvrir</span>
+                    <span class="iconify animate-bounce" data-icon="lucide:chevron-down" data-width="20"></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION EHOU -->
+    <section id="ehou" class="relative py-24 md:py-32 px-6" style="background: linear-gradient(180deg, #2A1F1F 0%, #1A1215 100%);">
+        <div class="sun-glow absolute top-0 right-0 w-96 h-96 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="text-center mb-16 fade-in-up">
+                <p class="text-xs uppercase tracking-[0.3em] text-rose-warm/40 mb-4">Premier nom</p>
+                <h2 class="font-serif text-5xl md:text-7xl tracking-tight shimmer-text mb-6">E H O U</h2>
+                <div class="w-24 h-px mx-auto" style="background: linear-gradient(90deg, transparent, #8B4049, transparent);"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- E -->
+                <div class="letter-card glass-card rounded-2xl p-8 text-center fade-in-up" style="transition-delay: 0.1s;">
+                    <div class="letter-char font-serif text-6xl font-500 text-rose-warm mb-4 transition-all duration-500">E</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-4 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-lg text-morning-gold mb-3">Éblouissante</h3>
+                    <p class="text-sm text-rose-warm/50 leading-relaxed">
+                        Tu as cette lumière qui éblouit mon monde dès que tu apparais. Ton sourire est le premier rayon de soleil de chacune de mes journées.
+                    </p>
+                    <div class="mt-4 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:sun" data-width="20"></span>
+                    </div>
+                </div>
+
+                <!-- H -->
+                <div class="letter-card glass-card rounded-2xl p-8 text-center fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="letter-char font-serif text-6xl font-500 text-rose-warm mb-4 transition-all duration-500">H</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-4 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-lg text-morning-gold mb-3">Harmonie</h3>
+                    <p class="text-sm text-rose-warm/50 leading-relaxed">
+                        Avec toi, tout trouve son équilibre. Tu es la mélodie qui donne un sens à ma vie, l'harmonie parfaite que mon cœur recherchait.
+                    </p>
+                    <div class="mt-4 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:music" data-width="20"></span>
+                    </div>
+                </div>
+
+                <!-- O -->
+                <div class="letter-card glass-card rounded-2xl p-8 text-center fade-in-up" style="transition-delay: 0.3s;">
+                    <div class="letter-char font-serif text-6xl font-500 text-rose-warm mb-4 transition-all duration-500">O</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-4 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-lg text-morning-gold mb-3">Originale</h3>
+                    <p class="text-sm text-rose-warm/50 leading-relaxed">
+                        Il n'y a personne comme toi au monde. Ton originalité est ta plus grande force, ce qui te rend absolument irremplaçable à mes yeux.
+                    </p>
+                    <div class="mt-4 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:sparkles" data-width="20"></span>
+                    </div>
+                </div>
+
+                <!-- U -->
+                <div class="letter-card glass-card rounded-2xl p-8 text-center fade-in-up" style="transition-delay: 0.4s;">
+                    <div class="letter-char font-serif text-6xl font-500 text-rose-warm mb-4 transition-all duration-500">U</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-4 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-lg text-morning-gold mb-3">Unique</h3>
+                    <p class="text-sm text-rose-warm/50 leading-relaxed">
+                        Unique, comme chaque étoile dans le ciel. Tu es la seule personne qui fait battre mon cœur de cette façon, et je n'en veux aucune autre.
+                    </p>
+                    <div class="mt-4 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:star" data-width="20"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Citation EHOU -->
+            <div class="mt-16 text-center fade-in-up" style="transition-delay: 0.6s;">
+                <div class="glass-card inline-block rounded-2xl px-10 py-8 max-w-xl">
+                    <span class="iconify text-rose-deep/30 mb-4 block" data-icon="lucide:quote" data-width="28"></span>
+                    <p class="font-serif italic text-rose-warm/70 leading-relaxed">
+                        EHOU — quatre lettres qui suffisent à résumer tout ce que mon cœur ressent au réveil, quand ton nom est ma première pensée.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="name-section-divider max-w-xs mx-auto"></div>
+
+    <!-- SECTION ANGELA -->
+    <section id="angela" class="relative py-24 md:py-32 px-6" style="background: linear-gradient(180deg, #1A1215 0%, #231819 50%, #1A1215 100%);">
+        <div class="sun-glow absolute bottom-0 left-0 w-80 h-80 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="text-center mb-16 fade-in-up">
+                <p class="text-xs uppercase tracking-[0.3em] text-rose-warm/40 mb-4">Deuxième nom</p>
+                <h2 class="font-serif text-5xl md:text-7xl tracking-tight shimmer-text mb-6">A N G E L A</h2>
+                <div class="w-24 h-px mx-auto" style="background: linear-gradient(90deg, transparent, #8B4049, transparent);"></div>
+                <p class="text-sm text-rose-warm/30 mt-4 font-serif italic">Comme un ange descendu pour moi</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- A -->
+                <div class="letter-card glass-card rounded-2xl p-8 text-center fade-in-left" style="transition-delay: 0.1s;">
+                    <div class="letter-char font-serif text-6xl font-500 text-rose-warm mb-4 transition-all duration-500">A</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-4 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-lg text-morning-gold mb-3">Ange</h3>
+                    <p class="text-sm text-rose-warm/50 leading-relaxed">
+                        Tu es mon ange gardien, celle qui veille sur mon cœur même quand tu n'es pas là. Ta pureté illumine mes jours les plus sombres.
+                    </p>
+                    <div class="mt-4 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:feather" data-width="20"></span>
+                    </div>
+                </div>
+
+                <!-- N -->
+                <div class="letter-card glass-card rounded-2xl p-8 text-center fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="letter-char font-serif text-6xl font-500 text-rose-warm mb-4 transition-all duration-500">N</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-4 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-lg text-morning-gold mb-3">Noble</h3>
+                    <p class="text-sm text-rose-warm/50 leading-relaxed">
+                        Ta noblesse de cœur est rare en ce monde. Tu traites chacun avec une dignité qui m'inspire à être un meilleur homme chaque jour.
+                    </p>
+                    <div class="mt-4 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:crown" data-width="20"></span>
+                    </div>
+                </div>
+
+                <!-- G -->
+                <div class="letter-card glass-card rounded-2xl p-8 text-center fade-in-right" style="transition-delay: 0.3s;">
+                    <div class="letter-char font-serif text-6xl font-500 text-rose-warm mb-4 transition-all duration-500">G</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-4 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-lg text-morning-gold mb-3">Grâce</h3>
+                    <p class="text-sm text-rose-warm/50 leading-relaxed">
+                        Tu te mouvs avec une grâce naturelle, comme si chaque pas était une danse. Ta présence est un cadeau que je chéris infiniment.
+                    </p>
+                    <div class="mt-4 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:flower-2" data-width="20"></span>
+                    </div>
+                </div>
+
+                <!-- E -->
+                <div class="letter-card glass-card rounded-2xl p-8 text-center fade-in-left" style="transition-delay: 0.4s;">
+                    <div class="letter-char font-serif text-6xl font-500 text-rose-warm mb-4 transition-all duration-500">E</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-4 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-lg text-morning-gold mb-3">Émerveillement</h3>
+                    <p class="text-sm text-rose-warm/50 leading-relaxed">
+                        Tu m'émerveilles chaque jour un peu plus. Même après tout ce temps, tu arrives encore à me surprendre et à me couper le souffle.
+                    </p>
+                    <div class="mt-4 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:eye" data-width="20"></span>
+                    </div>
+                </div>
+
+                <!-- L -->
+                <div class="letter-card glass-card rounded-2xl p-8 text-center fade-in-up" style="transition-delay: 0.5s;">
+                    <div class="letter-char font-serif text-6xl font-500 text-rose-warm mb-4 transition-all duration-500">L</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-4 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-lg text-morning-gold mb-3">Lumière</h3>
+                    <p class="text-sm text-rose-warm/50 leading-relaxed">
+                        Tu es la lumière qui guide mes pas. Dans l'obscurité, je n'ai qu'à penser à toi pour retrouver mon chemin vers le bonheur.
+                    </p>
+                    <div class="mt-4 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:lamp" data-width="20"></span>
+                    </div>
+                </div>
+
+                <!-- A2 -->
+                <div class="letter-card glass-card rounded-2xl p-8 text-center fade-in-right" style="transition-delay: 0.6s;">
+                    <div class="letter-char font-serif text-6xl font-500 text-rose-warm mb-4 transition-all duration-500">A</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-4 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-lg text-morning-gold mb-3">Aurore</h3>
+                    <p class="text-sm text-rose-warm/50 leading-relaxed">
+                        Tu es mon aurore, le début de tout ce qui est beau dans ma vie. Chaque matin avec toi est une nouvelle promesse de bonheur.
+                    </p>
+                    <div class="mt-4 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:sunrise" data-width="20"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Citation ANGELA -->
+            <div class="mt-16 text-center fade-in-up" style="transition-delay: 0.8s;">
+                <div class="glass-card inline-block rounded-2xl px-10 py-8 max-w-xl">
+                    <span class="iconify text-rose-deep/30 mb-4 block" data-icon="lucide:quote" data-width="28"></span>
+                    <p class="font-serif italic text-rose-warm/70 leading-relaxed">
+                        ANGELA — six lettres qui forment le plus beau prénom que mes lèvres aient jamais prononcé. Un ange n'était pas assez, il a fallu te donner un nom à la hauteur de ta splendeur.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="name-section-divider max-w-xs mx-auto"></div>
+
+    <!-- SECTION ELLA -->
+    <section id="ella" class="relative py-24 md:py-32 px-6" style="background: linear-gradient(180deg, #1A1215 0%, #201619 50%, #1A1215 100%);">
+        <div class="sun-glow absolute top-1/2 right-0 w-72 h-72 rounded-full -translate-y-1/2 translate-x-1/3"></div>
+
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="text-center mb-16 fade-in-up">
+                <p class="text-xs uppercase tracking-[0.3em] text-rose-warm/40 mb-4">Troisième nom</p>
+                <h2 class="font-serif text-5xl md:text-7xl tracking-tight shimmer-text mb-6">E L L A</h2>
+                <div class="w-24 h-px mx-auto" style="background: linear-gradient(90deg, transparent, #8B4049, transparent);"></div>
+                <p class="text-sm text-rose-warm/30 mt-4 font-serif italic">Doux comme une mélodie</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                <!-- E -->
+                <div class="letter-card glass-card rounded-2xl p-8 text-center fade-in-left" style="transition-delay: 0.1s;">
+                    <div class="letter-char font-serif text-6xl font-500 text-rose-warm mb-4 transition-all duration-500">E</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-4 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-lg text-morning-gold mb-3">Étoile</h3>
+                    <p class="text-sm text-rose-warm/50 leading-relaxed">
+                        Mon étoile filante, celle que j'ai souhaitée une nuit et que la vie m'a offerte. Tu brilles dans mon ciel intérieur, même en plein jour.
+                    </p>
+                    <div class="mt-4 flex justify-center gap-3">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:star" data-width="16"></span>
+                        <span class="iconify text-rose-deep/30" data-icon="lucide:star" data-width="12"></span>
+                        <span class="iconify text-rose-deep/20" data-icon="lucide:star" data-width="8"></span>
+                    </div>
+                </div>
+
+                <!-- L -->
+                <div class="letter-card glass-card rounded-2xl p-8 text-center fade-in-right" style="transition-delay: 0.2s;">
+                    <div class="letter-char font-serif text-6xl font-500 text-rose-warm mb-4 transition-all duration-500">L</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-4 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-lg text-morning-gold mb-3">Loyauté</h3>
+                    <p class="text-sm text-rose-warm/50 leading-relaxed">
+                        Ta loyauté est un pilier dans ma vie. Je sais que peu importe les tempêtes, tu seras toujours là, et ça me donne une force inébranlable.
+                    </p>
+                    <div class="mt-4 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:shield-check" data-width="20"></span>
+                    </div>
+                </div>
+
+                <!-- L2 -->
+                <div class="letter-card glass-card rounded-2xl p-8 text-center fade-in-left" style="transition-delay: 0.3s;">
+                    <div class="letter-char font-serif text-6xl font-500 text-rose-warm mb-4 transition-all duration-500">L</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-4 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-lg text-morning-gold mb-3">Lueur</h3>
+                    <p class="text-sm text-rose-warm/50 leading-relaxed">
+                        Cette petite lueur dans tes yeux quand tu souris — c'est ce qui me maintient en vie. C'est la plus belle lueur que j'aie jamais vue.
+                    </p>
+                    <div class="mt-4 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:flame" data-width="20"></span>
+                    </div>
+                </div>
+
+                <!-- A -->
+                <div class="letter-card glass-card rounded-2xl p-8 text-center fade-in-right" style="transition-delay: 0.4s;">
+                    <div class="letter-char font-serif text-6xl font-500 text-rose-warm mb-4 transition-all duration-500">A</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-4 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-lg text-morning-gold mb-3">Allégresse</h3>
+                    <p class="text-sm text-rose-warm/50 leading-relaxed">
+                        L'allégresse que tu apportes dans ma vie est incomparable. Ton rire est le son le plus pur, le plus doux, le plus addictif que je connaisse.
+                    </p>
+                    <div class="mt-4 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:smile" data-width="20"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Citation ELLA -->
+            <div class="mt-16 text-center fade-in-up" style="transition-delay: 0.6s;">
+                <div class="glass-card inline-block rounded-2xl px-10 py-8 max-w-xl">
+                    <span class="iconify text-rose-deep/30 mb-4 block" data-icon="lucide:quote" data-width="28"></span>
+                    <p class="font-serif italic text-rose-warm/70 leading-relaxed">
+                        ELLA — quatre lettres douces comme un murmure, comme une chanson que mon cœur chante en boucle. Simple, élégant, parfait — comme toi.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="name-section-divider max-w-xs mx-auto"></div>
+
+    <!-- SECTION BENELVY -->
+    <section id="benelvy" class="relative py-24 md:py-32 px-6" style="background: linear-gradient(180deg, #1A1215 0%, #2A1F1F 50%, #1A1215 100%);">
+        <div class="sun-glow absolute top-0 left-1/2 w-96 h-96 rounded-full -translate-x-1/2 -translate-y-1/3"></div>
+
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="text-center mb-16 fade-in-up">
+                <p class="text-xs uppercase tracking-[0.3em] text-rose-warm/40 mb-4">Nom de famille</p>
+                <h2 class="font-serif text-4xl md:text-6xl lg:text-7xl tracking-tight shimmer-text mb-6">B E N E L V Y</h2>
+                <div class="w-24 h-px mx-auto" style="background: linear-gradient(90deg, transparent, #8B4049, transparent);"></div>
+                <p class="text-sm text-rose-warm/30 mt-4 font-serif italic">Sept lettres qui font toute ta grandeur</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                <!-- B -->
+                <div class="letter-card glass-card rounded-2xl p-7 text-center fade-in-up" style="transition-delay: 0.05s;">
+                    <div class="letter-char font-serif text-5xl font-500 text-rose-warm mb-3 transition-all duration-500">B</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-3 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-base text-morning-gold mb-2">Beauté</h3>
+                    <p class="text-xs text-rose-warm/50 leading-relaxed">
+                        Ta beauté n'est pas que extérieure — elle rayonne de l'intérieur, de ton âme jusqu'à ton sourire. Tu es la plus belle chose qui me soit arrivée.
+                    </p>
+                    <div class="mt-3 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:heart" data-width="18"></span>
+                    </div>
+                </div>
+
+                <!-- E -->
+                <div class="letter-card glass-card rounded-2xl p-7 text-center fade-in-up" style="transition-delay: 0.1s;">
+                    <div class="letter-char font-serif text-5xl font-500 text-rose-warm mb-3 transition-all duration-500">E</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-3 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-base text-morning-gold mb-2">Élégance</h3>
+                    <p class="text-xs text-rose-warm/50 leading-relaxed">
+                        Tu possèdes cette élégance naturelle que ni l'argent ni le temps ne peuvent acheter. Tu es classe, simplement en étant toi-même.
+                    </p>
+                    <div class="mt-3 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:gem" data-width="18"></span>
+                    </div>
+                </div>
+
+                <!-- N -->
+                <div class="letter-card glass-card rounded-2xl p-7 text-center fade-in-up" style="transition-delay: 0.15s;">
+                    <div class="letter-char font-serif text-5xl font-500 text-rose-warm mb-3 transition-all duration-500">N</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-3 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-base text-morning-gold mb-2">Naturelle</h3>
+                    <p class="text-xs text-rose-warm/50 leading-relaxed">
+                        Pas besoin de artifices pour briller. Ta naturellement est ton plus grand atout — tu es vraie, authentique, et c'est ça qui me rend fou.
+                    </p>
+                    <div class="mt-3 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:leaf" data-width="18"></span>
+                    </div>
+                </div>
+
+                <!-- E2 -->
+                <div class="letter-card glass-card rounded-2xl p-7 text-center fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="letter-char font-serif text-5xl font-500 text-rose-warm mb-3 transition-all duration-500">E</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-3 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-base text-morning-gold mb-2">Éternité</h3>
+                    <p class="text-xs text-rose-warm/50 leading-relaxed">
+                        C'est le temps que je voudrais passer avec toi. L'éternité ne me suffitrait pas pour t'aimer autant que tu le mérites.
+                    </p>
+                    <div class="mt-3 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:infinity" data-width="18"></span>
+                    </div>
+                </div>
+
+                <!-- L -->
+                <div class="letter-card glass-card rounded-2xl p-7 text-center fade-in-up" style="transition-delay: 0.25s;">
+                    <div class="letter-char font-serif text-5xl font-500 text-rose-warm mb-3 transition-all duration-500">L</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-3 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-base text-morning-gold mb-2">Légèreté</h3>
+                    <p class="text-xs text-rose-warm/50 leading-relaxed">
+                        Avec toi, tout devient léger. Les soucis s'envolent, le poids du monde disparaît. Tu es ma bulle de bonheur, mon souffle d'air frais.
+                    </p>
+                    <div class="mt-3 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:wind" data-width="18"></span>
+                    </div>
+                </div>
+
+                <!-- V -->
+                <div class="letter-card glass-card rounded-2xl p-7 text-center fade-in-up" style="transition-delay: 0.3s;">
+                    <div class="letter-char font-serif text-5xl font-500 text-rose-warm mb-3 transition-all duration-500">V</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-3 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-base text-morning-gold mb-2">Vertu</h3>
+                    <p class="text-xs text-rose-warm/50 leading-relaxed">
+                        Tes vertus sont innombrables : bonté, patience, générosité. Tu es la preuve vivante que les belles personnes existent encore.
+                    </p>
+                    <div class="mt-3 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:award" data-width="18"></span>
+                    </div>
+                </div>
+
+                <!-- Y -->
+                <div class="letter-card glass-card rounded-2xl p-7 text-center fade-in-up sm:col-span-2 lg:col-span-1" style="transition-delay: 0.35s;">
+                    <div class="letter-char font-serif text-5xl font-500 text-rose-warm mb-3 transition-all duration-500">Y</div>
+                    <div class="letter-line w-8 h-px mx-auto mb-3 transition-all duration-500" style="background: #8B4049;"></div>
+                    <h3 class="font-serif text-base text-morning-gold mb-2">Yeux</h3>
+                    <p class="text-xs text-rose-warm/50 leading-relaxed">
+                        Tes yeux — ma plus grande faiblesse. Quand tu me regardes, le monde s'arrête de tourner. Dans tes yeux, je vois tout ce que j'aime.
+                    </p>
+                    <div class="mt-3 flex justify-center">
+                        <span class="iconify text-rose-deep/40" data-icon="lucide:eye" data-width="18"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Citation BENELVY -->
+            <div class="mt-16 text-center fade-in-up" style="transition-delay: 0.5s;">
+                <div class="glass-card inline-block rounded-2xl px-10 py-8 max-w-xl">
+                    <span class="iconify text-rose-deep/30 mb-4 block" data-icon="lucide:quote" data-width="28"></span>
+                    <p class="font-serif italic text-rose-warm/70 leading-relaxed">
+                        BENELVY — sept lettres qui portent le poids de toute ma tendresse. Ce nom est un trésor, et sa détentrice est le plus grand trésor de ma vie.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION RÉCAPITULATIF VISUEL -->
+    <section class="relative py-24 md:py-32 px-6 overflow-hidden" style="background: linear-gradient(180deg, #1A1215 0%, #2A1F1F 100%);">
+        <div class="absolute inset-0 sun-glow"></div>
+        
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="text-center mb-16 fade-in-up">
+                <p class="text-xs uppercase tracking-[0.3em] text-rose-warm/40 mb-4">L'intégralité</p>
+                <h2 class="font-serif text-3xl md:text-5xl tracking-tight text-rose-warm mb-6">
+                    21 lettres, 21 raisons de t'aimer
+                </h2>
+                <div class="w-24 h-px mx-auto" style="background: linear-gradient(90deg, transparent, #8B4049, transparent);"></div>
+            </div>
+
+            <!-- Nom complet en lettres espacées -->
+            <div class="flex flex-wrap justify-center gap-2 md:gap-3 mb-16 fade-in-up" style="transition-delay: 0.2s;" id="full-name-letters">
+                <!-- Les lettres seront injectées par JS -->
+            </div>
+
+            <!-- Message final -->
+            <div class="text-center fade-in-up" style="transition-delay: 0.5s;">
+                <div class="glass-card rounded-2xl p-10 md:p-14 max-w-2xl mx-auto">
+                    <div class="animate-heartbeat inline-block mb-6">
+                        <span class="iconify" data-icon="lucide:heart" data-width="32" style="color: #8B4049;"></span>
+                    </div>
+                    <h3 class="font-serif text-2xl md:text-3xl text-rose-warm mb-6 leading-snug">
+                        Chaque matin, je me réveille<br>avec la plus belle pensée :
+                    </h3>
+                    <p class="font-serif text-lg md:text-xl text-morning-gold/80 italic leading-relaxed mb-6">
+                        « EHOU Angela Ella Benelvy, tu es la raison de mon sourire, la cause de mon bonheur, et la réponse à toutes mes prières. »
+                    </p>
+                    <div class="w-12 h-px mx-auto my-6" style="background: #8B4049;"></div>
+                    <p class="text-sm text-rose-warm/40">
+                        Avec tout mon amour, chaque matin, pour toujours.
+                    </p>
+                    <p class="text-xs text-rose-warm/25 mt-2 font-serif italic">
+                        — Celui qui t'aime
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 px-6 text-center" style="background: #1A1215; border-top: 1px solid rgba(139, 64, 73, 0.1);">
+        <div class="flex justify-center mb-4">
+            <span class="iconify animate-heartbeat" data-icon="lucide:heart" data-width="16" style="color: #8B4049;"></span>
+        </div>
+        <p class="text-xs text-rose-warm/25 font-serif">
+            Fait avec amour pour EHOU Angela Ella Benelvy
+        </p>
+        <p class="text-xs text-rose-warm/15 mt-1">
+            Chaque lettre compte. Chaque matin compte. Toi, tu comptes le plus.
+        </p>
+    </footer>
+
+    <!-- Bouton retour en haut -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:scale-110"
+            style="background: rgba(139, 64, 73, 0.8); backdrop-filter: blur(8px);">
+        <span class="iconify text-rose-blush" data-icon="lucide:chevron-up" data-width="20"></span>
+    </button>
+
+    <script>
+        // Données des lettres du nom complet
+        const fullName = "EHOU ANGELA ELLA BENELVY";
+        const letterMeanings = {
+            'E': ['Éblouissante', 'Émerveillement', 'Étoile', 'Élégance', 'Éternité'],
+            'H': ['Harmonie'],
+            'O': ['Originale'],
+            'U': ['Unique'],
+            'A': ['Ange', 'Aurore', 'Allégresse'],
+            'N': ['Noble', 'Naturelle'],
+            'G': ['Grâce'],
+            'L': ['Lumière', 'Loyauté', 'Lueur', 'Légèreté'],
+            'B': ['Beauté'],
+            'V': ['Vertu'],
+            'Y': ['Yeux']
+        };
+
+        let eIndex = 0, aIndex = 0, lIndex = 0, nIndex = 0;
+
+        function getMeaning(letter) {
+            const upper = letter.toUpperCase();
+            if (upper === 'E') return letterMeanings['E'][eIndex++ % letterMeanings['E'].length];
+            if (upper === 'A') return letterMeanings['A'][aIndex++ % letterMeanings['A'].length];
+            if (upper === 'L') return letterMeanings['L'][lIndex++ % letterMeanings['L'].length];
+            if (upper === 'N') return letterMeanings['N'][nIndex++ % letterMeanings['N'].length];
+            return letterMeanings[upper]?.[0] || '';
+        }
+
+        // Générer les lettres du nom complet
+        const container = document.getElementById('full-name-letters');
+        fullName.split('').forEach((char, i) => {
+            if (char === ' ') {
+                const spacer = document.createElement('div');
+                spacer.className = 'w-4';
+                container.appendChild(spacer);
+                return;
+            }
+            const meaning = getMeaning(char);
+            const wrapper = document.createElement('div');
+            wrapper.className = 'group relative cursor-default';
+            wrapper.style.animationDelay = `${i * 0.05}s`;
+            wrapper.innerHTML = `
+                <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center font-serif text-lg md:text-xl text-rose-warm transition-all duration-300 group-hover:scale-110 group-hover:text-morning-gold"
+                     style="background: rgba(139, 64, 73, 0.15); border: 1px solid rgba(139, 64, 73, 0.2);">
+                    ${char}
+                </div>
+                <div class="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 rounded-lg text-xs font-serif text-morning-gold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none"
+                     style="background: rgba(42, 31, 31, 0.95); border: 1px solid rgba(139, 64, 73, 0.3);">
+                    ${meaning}
+                </div>
+            `;
+            container.appendChild(wrapper);
+        });
+
+        // Pétales tombantes
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            const startX = Math.random() * window.innerWidth;
+            const duration = 8 + Math.random() * 12;
+            const size = 8 + Math.random() * 10;
+            const drift = (Math.random() - 0.5) * 200;
+
+            petal.style.cssText = `
+                left: ${startX}px;
+                top: -20px;
+                width: ${size}px;
+                height: ${size}px;
+                animation: petalFall ${duration}s linear forwards;
+                transform-origin: center;
+            `;
+
+            // Override le translateX dans l'animation
+            petal.style.animationName = 'none';
+            petal.offsetHeight; // reflow
+            petal.style.animationName = 'petalFall';
+
+            document.getElementById('petals-container').appendChild(petal);
+            setTimeout(() => petal.remove(), duration * 1000);
+        }
+
+        // Créer des pétales périodiquement
+        setInterval(createPetal, 2500);
+        // Quelques pétales initiaux
+        setTimeout(createPetal, 500);
+        setTimeout(createPetal, 1200);
+        setTimeout(createPetal, 2000);
+
+        // Scroll animations avec IntersectionObserver
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+
+        // Back to top button
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 600) {
+                backToTop.style.opacity = '1';
+                backToTop.style.pointerEvents = 'auto';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.pointerEvents = 'none';
+            }
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Heure dynamique dans la console ( Easter egg )
+        const now = new Date();
+        const hour = now.getHours();
+        let greeting = 'Bonjour';
+        if (hour >= 12 && hour < 18) greeting = 'Bon après-midi';
+        else if (hour >= 18) greeting = 'Bonne soirée';
+        console.log(`%c${greeting}, mon Amour ❤️`, 'font-size: 20px; color: #D4A0A0; font-family: serif;');
+        console.log(`%cCe site a été fait avec amour pour EHOU Angela Ella Benelvy`, 'font-size: 12px; color: #8B4049;');
+    </script>
+</body>
+</html>
